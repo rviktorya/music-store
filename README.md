@@ -2,6 +2,9 @@
 Для запуска:
 
 ```bash
+cd music-store
+
+```bash
 npm install
 
 #Запустите сервер разработки:
