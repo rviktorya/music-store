@@ -5,7 +5,11 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+=======
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 import Index from "./pages/Index";
 import Catalog from "./pages/Catalog";
 import Cart from "./pages/Cart";
@@ -13,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AdminUsers from "@/pages/AdminUsers";
+<<<<<<< HEAD
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { StoreProvider } from "@/context/StoreContext";
 import AuthPage from "@/pages/AuthPage";
@@ -79,6 +84,12 @@ function AppContent() {
   );
 }
 
+=======
+import { StoreProvider } from "@/context/StoreContext";
+
+const queryClient = new QueryClient();
+
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -86,9 +97,25 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <StoreProvider>
+<<<<<<< HEAD
           <AuthProvider>
             <AppContent />
           </AuthProvider>
+=======
+          <div className="flex min-h-screen flex-col bg-background text-foreground">
+            <Header />
+            <div className="flex-1">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/catalog" element={<Catalog  />} />
+                <Route path="/admin/users" element={<AdminUsers />} /><Route path="/cart" element={<Cart />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <Footer />
+          </div>
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
         </StoreProvider>
       </BrowserRouter>
     </TooltipProvider>
@@ -101,4 +128,8 @@ const existingRoot = (globalThis as any).__app_root as
   | undefined;
 const root = existingRoot ?? createRoot(container);
 (globalThis as any).__app_root = root;
+<<<<<<< HEAD
 root.render(<App />);
+=======
+root.render(<App />);
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19

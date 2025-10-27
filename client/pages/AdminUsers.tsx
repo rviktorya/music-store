@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react";
 import { useStore } from "@/context/StoreContext";
 import type { User, UserRole, Order, Review, Address, AdminPermission } from "@shared/api";
+<<<<<<< HEAD
 import { useAuth } from "@/context/AuthContext";
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 import {
   Table,
   TableBody,
@@ -30,14 +33,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
+<<<<<<< HEAD
 import { createUserDraft, ROLE_PERMISSIONS } from "@shared/data";
+=======
+import { createUserDraft, ROLE_PERMISSIONS } from "@shared/data"; // Импортируем отсюда
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 
+<<<<<<< HEAD
 export default function AdminUsers() {
   const { currentUser } = useAuth();
+=======
+// Мокируем текущего пользователя (в реальном приложении это будет из контекста аутентификации)
+const CURRENT_USER: User = {
+  id: "current-user",
+  name: "Администратор",
+  email: "admin@musemart.ru",
+  role: "admin",
+  createdAt: new Date().toISOString(),
+  status: "active",
+  permissions: ROLE_PERMISSIONS.admin
+};
+
+export default function AdminUsers() {
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   const { state, addUser, updateUser, removeUser, getEnhancedUsers } = useStore();
   const { toast } = useToast();
   const [query, setQuery] = useState("");
@@ -45,6 +67,7 @@ export default function AdminUsers() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [activeTab, setActiveTab] = useState("users");
 
+<<<<<<< HEAD
   // Проверка прав доступа на основе реального пользователя
   const hasPermission = (permission: AdminPermission): boolean => {
     return currentUser?.permissions?.includes(permission) || false;
@@ -64,6 +87,13 @@ export default function AdminUsers() {
     );
   }
 
+=======
+  // Проверка прав доступа
+  const hasPermission = (permission: AdminPermission): boolean => {
+    return CURRENT_USER.permissions?.includes(permission) || false;
+  };
+
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   // Используем расширенных пользователей из StoreContext
   const usersWithDetails = useMemo(() => {
     return getEnhancedUsers();
@@ -74,7 +104,11 @@ export default function AdminUsers() {
     let filteredUsers = usersWithDetails;
 
     // Менеджеры видят только покупателей и других менеджеров
+<<<<<<< HEAD
     if (currentUser.role === 'manager') {
+=======
+    if (CURRENT_USER.role === 'manager') {
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
       filteredUsers = filteredUsers.filter(user => 
         user.role === 'customer' || user.role === 'manager'
       );
@@ -87,7 +121,11 @@ export default function AdminUsers() {
         f?.toString().toLowerCase().includes(q),
       ),
     );
+<<<<<<< HEAD
   }, [query, usersWithDetails, currentUser.role]);
+=======
+  }, [query, usersWithDetails]);
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 
   function onSave(user: User) {
     const exists = state.users.some((u) => u.id === user.id);
@@ -125,6 +163,23 @@ export default function AdminUsers() {
     }
   }
 
+<<<<<<< HEAD
+=======
+  // Если у пользователя нет прав на просмотр админки
+  if (!hasPermission('users:read')) {
+    return (
+      <div className="container py-8">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-destructive">Доступ запрещен</h1>
+          <p className="text-muted-foreground mt-2">
+            У вас недостаточно прав для доступа к панели администрирования.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   return (
     <div className="container py-8">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
@@ -133,9 +188,15 @@ export default function AdminUsers() {
             Панель администрирования
           </h1>
           <p className="text-muted-foreground">
+<<<<<<< HEAD
             {currentUser.role === 'admin' 
               ? "Полное управление системой" 
               : currentUser.role === 'manager'
+=======
+            {CURRENT_USER.role === 'admin' 
+              ? "Полное управление системой" 
+              : CURRENT_USER.role === 'manager'
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
               ? "Управление заказами и товарами"
               : "Просмотр информации"}
           </p>
@@ -159,7 +220,11 @@ export default function AdminUsers() {
                   user={editing}
                   onCancel={() => setEditing(null)}
                   onSave={onSave}
+<<<<<<< HEAD
                   currentUserRole={currentUser.role}
+=======
+                  currentUserRole={CURRENT_USER.role}
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
                 />
               )}
             </Dialog>
@@ -194,7 +259,10 @@ export default function AdminUsers() {
             onViewDetails={setSelectedUser}
             canEdit={hasPermission('users:write')}
             canDelete={hasPermission('users:delete')}
+<<<<<<< HEAD
             currentUser={currentUser}
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
           />
         </TabsContent>
 
@@ -221,21 +289,32 @@ export default function AdminUsers() {
       <UserDetailsDialog 
         user={selectedUser} 
         onClose={() => setSelectedUser(null)}
+<<<<<<< HEAD
         currentUserRole={currentUser.role}
+=======
+        currentUserRole={CURRENT_USER.role}
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
       />
     </div>
   );
 }
 
 // Компонент таблицы пользователей с учетом прав
+<<<<<<< HEAD
 function UsersTable({ users, onEdit, onDelete, onViewDetails, canEdit, canDelete, currentUser }: {
+=======
+function UsersTable({ users, onEdit, onDelete, onViewDetails, canEdit, canDelete }: {
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   users: any[];
   onEdit: (user: User) => void;
   onDelete: (id: string) => void;
   onViewDetails: (user: User) => void;
   canEdit: boolean;
   canDelete: boolean;
+<<<<<<< HEAD
   currentUser: User;
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 }) {
   return (
     <Table>
@@ -305,7 +384,11 @@ function UsersTable({ users, onEdit, onDelete, onViewDetails, canEdit, canDelete
                   size="sm"
                   className="hover:bg-gray-200 hover:text-black"
                   onClick={() => onEdit(u)}
+<<<<<<< HEAD
                   disabled={u.role === 'admin' && currentUser.role !== 'admin'}
+=======
+                  disabled={u.role === 'admin' && CURRENT_USER.role !== 'admin'}
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
                 >
                   Изменить
                 </Button>
@@ -315,7 +398,11 @@ function UsersTable({ users, onEdit, onDelete, onViewDetails, canEdit, canDelete
                   variant="destructive"
                   size="sm"
                   onClick={() => onDelete(u.id)}
+<<<<<<< HEAD
                   disabled={u.role === 'admin' && currentUser.role !== 'admin'}
+=======
+                  disabled={u.role === 'admin' && CURRENT_USER.role !== 'admin'}
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
                 >
                   Удалить
                 </Button>
@@ -326,16 +413,24 @@ function UsersTable({ users, onEdit, onDelete, onViewDetails, canEdit, canDelete
       </TableBody>
       <TableCaption>
         Всего пользователей: {users.length}
+<<<<<<< HEAD
         {currentUser.role === 'manager' && ' (только покупатели и менеджеры)'}
+=======
+        {CURRENT_USER.role === 'manager' && ' (только покупатели и менеджеры)'}
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
       </TableCaption>
     </Table>
   );
 }
 
+<<<<<<< HEAD
 // Остальные компоненты (UserDetailsDialog, UserInfoTab, UserPermissionsTab, OrdersTable, ReviewsTable, AnalyticsTab, UserEditor) 
 // остаются без изменений, но замените все использования CURRENT_USER на currentUser из пропсов
 
 // Компонент деталей пользователя
+=======
+// Компонент деталей пользователя с разным контентом для разных ролей
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function UserDetailsDialog({ user, onClose, currentUserRole }: { 
   user: any; 
   onClose: () => void;
@@ -345,6 +440,11 @@ function UserDetailsDialog({ user, onClose, currentUserRole }: {
   
   if (!user) return null;
 
+<<<<<<< HEAD
+=======
+  // Для покупателей показываем детальную информацию о заказах
+  // Для сотрудников - служебную информацию
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   const userOrders = getUserOrders(user.id);
   const userReviews = getUserReviews(user.id);
   const userAddresses = getUserAddresses(user.id);
@@ -421,7 +521,11 @@ function UserDetailsDialog({ user, onClose, currentUserRole }: {
   );
 }
 
+<<<<<<< HEAD
 // Вкладка с основной информацией
+=======
+// Вкладка с основной информацией (разная для покупателей и сотрудников)
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function UserInfoTab({ user, isCustomer }: { user: any; isCustomer: boolean }) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
@@ -473,7 +577,11 @@ function UserInfoTab({ user, isCustomer }: { user: any; isCustomer: boolean }) {
   );
 }
 
+<<<<<<< HEAD
 // Вкладка с правами доступа
+=======
+// Вкладка с правами доступа (только для админов)
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function UserPermissionsTab({ user }: { user: User }) {
   const { updateUser } = useStore();
   const [permissions, setPermissions] = useState<AdminPermission[]>(user.permissions || []);
@@ -537,7 +645,11 @@ function UserPermissionsTab({ user }: { user: User }) {
   );
 }
 
+<<<<<<< HEAD
 // Таблица заказов
+=======
+// Таблица заказов с учетом прав
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function OrdersTable({ canEdit }: { canEdit: boolean }) {
   const { state, updateOrder } = useStore();
   
@@ -621,7 +733,11 @@ function OrdersTable({ canEdit }: { canEdit: boolean }) {
   );
 }
 
+<<<<<<< HEAD
 // Таблица отзывов
+=======
+// Таблица отзывов с учетом прав
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function ReviewsTable({ canEdit }: { canEdit: boolean }) {
   const { state, updateReview } = useStore();
   
@@ -692,7 +808,11 @@ function ReviewsTable({ canEdit }: { canEdit: boolean }) {
   );
 }
 
+<<<<<<< HEAD
 // Вкладка аналитики
+=======
+// Вкладка аналитики (только для админов и менеджеров)
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function AnalyticsTab() {
   const { getEnhancedUsers, state } = useStore();
   
@@ -742,7 +862,11 @@ function AnalyticsTab() {
   );
 }
 
+<<<<<<< HEAD
 // Компонент редактора пользователя
+=======
+// Компонент редактора пользователя с учетом ролей
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 function UserEditor({
   user,
   onCancel,
@@ -759,6 +883,10 @@ function UserEditor({
     permissions: user.permissions || ROLE_PERMISSIONS[user.role] 
   });
 
+<<<<<<< HEAD
+=======
+  // Автоматически устанавливаем права доступа при смене роли
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   const handleRoleChange = (role: UserRole) => {
     setLocal({
       ...local,
@@ -832,6 +960,10 @@ function UserEditor({
           </div>
         </div>
 
+<<<<<<< HEAD
+=======
+        {/* Дополнительные поля для сотрудников */}
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
         {(local.role === 'admin' || local.role === 'manager') && (
           <>
             <div className="grid grid-cols-4 items-center gap-4">

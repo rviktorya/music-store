@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import { type ClassValue, clsx } from "clsx";
+=======
+import { clsx, type ClassValue } from "clsx";
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+<<<<<<< HEAD
 
 export function formatPrice(value: number, currency: string = "RUB") {
   return new Intl.NumberFormat("ru-RU", { 
@@ -54,3 +59,5 @@ export function getRoleLabel(role: string) {
       return "Покупатель";
   }
 }
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19

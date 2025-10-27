@@ -530,7 +530,10 @@ export const users: User[] = [
     id: uid("usr"),
     name: "Алексей Петров",
     email: "admin@musemart.ru",
+<<<<<<< HEAD
     password: "password123", // Добавьте пароль
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     role: "admin",
     createdAt: new Date().toISOString(),
     status: "active",
@@ -542,7 +545,10 @@ export const users: User[] = [
     id: uid("usr"),
     name: "Марина Сидорова",
     email: "marina@musemart.ru",
+<<<<<<< HEAD
     password: "manager123", // Добавьте пароль
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     role: "manager",
     createdAt: new Date(Date.now() - 86400000 * 12).toISOString(),
     status: "active",
@@ -553,21 +559,33 @@ export const users: User[] = [
   {
     id: uid("usr"),
     name: "Иван Козлов",
+<<<<<<< HEAD
     email: "ivan@example2.com",
     password: "user123", // Добавьте пароль
     role: "customer",
     createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
     status: "active",
+=======
+    email: "ivan@example_2.com",
+    role: "customer",
+    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
+    status: "active",
+
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   },
   {
     id: uid("usr"),
     name: "Петр Иванов",
     email: "petr@example.com",
+<<<<<<< HEAD
     password: "user123", // Добавьте пароль
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     role: "customer",
     createdAt: new Date(Date.now() - 86400000 * 50).toISOString(),
     status: "blocked",
   },
+<<<<<<< HEAD
   {
     id: uid("usr"),
     name: "Антон Сидоров",
@@ -577,6 +595,8 @@ export const users: User[] = [
     createdAt: new Date(Date.now() - 86400000 * 50).toISOString(),
     status: "active",
   },
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 ];
 
 export function getProductsByCategory(key?: CategoryKey): Product[] {
@@ -603,9 +623,15 @@ export function createUserDraft(): User {
 export const addresses: Address[] = [
   {
     id: uid("addr"),
+<<<<<<< HEAD
     userId: users[4].id, // Антон
     title: "Дом",
     fullName: "Антон Сидоров",
+=======
+    userId: users[2].id, // Петр
+    title: "Дом",
+    fullName: "Петр Иванов",
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     street: "ул. Ленина, д. 123, кв. 45",
     city: "Москва",
     postalCode: "123456",
@@ -615,9 +641,15 @@ export const addresses: Address[] = [
   },
   {
     id: uid("addr"),
+<<<<<<< HEAD
     userId: users[4].id,
     title: "Работа",
     fullName: "Антон Сидоров",
+=======
+    userId: users[2].id,
+    title: "Работа",
+    fullName: "Петр Иванов",
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     street: "ул. Пушкина, д. 67, офис 12",
     city: "Москва",
     postalCode: "123457",
@@ -631,7 +663,11 @@ export const addresses: Address[] = [
 export const orders: Order[] = [
   {
     id: uid("ord"),
+<<<<<<< HEAD
     userId: users[4].id, // Петр
+=======
+    userId: users[2].id, // Петр
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     orderNumber: "ORD-001",
     items: [
       {
@@ -662,7 +698,11 @@ export const orders: Order[] = [
   },
   {
     id: uid("ord"),
+<<<<<<< HEAD
     userId: users[4].id,
+=======
+    userId: users[2].id,
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     orderNumber: "ORD-002",
     items: [
       {
@@ -689,7 +729,11 @@ export const orders: Order[] = [
 export const reviews: Review[] = [
   {
     id: uid("rev"),
+<<<<<<< HEAD
     userId: users[4].id,
+=======
+    userId: users[2].id,
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     productId: products[0].id,
     productName: products[0].name,
     rating: 5,
@@ -699,7 +743,11 @@ export const reviews: Review[] = [
   },
   {
     id: uid("rev"),
+<<<<<<< HEAD
     userId: users[4].id,
+=======
+    userId: users[2].id,
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
     productId: products[3].id,
     productName: products[3].name,
     rating: 4,

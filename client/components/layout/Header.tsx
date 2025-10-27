@@ -1,6 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+<<<<<<< HEAD
 import { Sun, Moon, ShoppingCart, Heart, User, Search, Settings, LogIn, LogOut } from "lucide-react";
+=======
+import { Sun, Moon, ShoppingCart, Heart, User, Search, Settings, LogIn } from "lucide-react";
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 import { useEffect, useState } from "react";
 import { useStore } from "@/context/StoreContext";
 import { createUserDraft } from "@shared/data";
@@ -17,7 +21,10 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
 import React from "react";
+<<<<<<< HEAD
 import { useAuth } from "@/context/AuthContext";
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 
 function useTheme() {
   const [dark, setDark] = useState(() =>
@@ -229,7 +236,10 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { state } = useStore();
+<<<<<<< HEAD
   const { currentUser, logout } = useAuth();
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 
   const isAdminPage = pathname.startsWith("/admin");
 
@@ -256,7 +266,16 @@ export default function Header() {
                 <NavLink to="/catalog" active={pathname === "/catalog"}>
                   Каталог
                 </NavLink>
+<<<<<<< HEAD
               
+=======
+                <NavLink to="/about" active={pathname === "/about"}>
+                  О нас
+                </NavLink>
+                <NavLink to="/contacts" active={pathname === "/contacts"}>
+                  Контакты
+                </NavLink>
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
               </nav>
             )}
           </div>
@@ -293,6 +312,7 @@ export default function Header() {
                   </Link>
                 </Tooltip>
 
+<<<<<<< HEAD
                 
               </>
             )}
@@ -328,6 +348,18 @@ export default function Header() {
                   <LogIn className="h-4 w-4" />
                 </Link>
               </Tooltip>
+=======
+                <Tooltip text="Войти в аккаунт">
+                  <button
+                    aria-label="Профиль"
+                    onClick={() => setIsAuthModalOpen(true)}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-md border hover:bg-muted"
+                  >
+                    <LogIn className="h-4 w-4" />
+                  </button>
+                </Tooltip>
+              </>
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
             )}
 
             {/* Кнопка перехода в админку/магазин */}
@@ -340,6 +372,7 @@ export default function Header() {
                 <span>В магазин</span>
               </Link>
             ) : (
+<<<<<<< HEAD
               currentUser?.role === 'admin' && (
                 <Link
                   to="/admin/users"
@@ -349,6 +382,15 @@ export default function Header() {
                   <span>Администрирование</span>
                 </Link>
               )
+=======
+              <Link
+                to="/admin/users"
+                className="hidden sm:flex h-9 items-center gap-2 rounded-md border px-3 text-sm hover:bg-muted"
+              >
+                <Settings className="h-4 w-4" />
+                <span>Администрирование</span>
+              </Link>
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
             )}
 
             {/* Переключение темы */}

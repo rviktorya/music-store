@@ -111,6 +111,7 @@ export interface User {
   id: UUID;
   name: string;
   email: string;
+<<<<<<< HEAD
   password?: string; // Добавьте это поле
   role: UserRole;
   createdAt: string;
@@ -120,6 +121,11 @@ export interface User {
   department?: string;
   position?: string;
   lastLogin?: string; // Добавьте это поле
+=======
+  role: UserRole;
+  createdAt: string; // ISO string
+  status: "active" | "blocked";
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 }
 
 export interface Product {

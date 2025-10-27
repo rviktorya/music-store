@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+=======
+import React, { createContext, useContext, useMemo, useReducer } from "react";
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 import type { Product, User, Order, Review, Address, UUID } from "@shared/api";
 import { 
   products as seedProducts, 
@@ -21,7 +25,11 @@ interface State {
   orders: Order[];
   reviews: Review[];
   addresses: Address[];
+<<<<<<< HEAD
   cart: CartItem[];
+=======
+  cart: CartItem[]; // Добавляем корзину
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 }
 
 // Добавьте действия для корзины
@@ -39,6 +47,7 @@ type Action =
   | { type: "address/update"; payload: Address }
   | { type: "address/remove"; payload: string }
   | { type: "address/set_default"; payload: { addressId: string; userId: string } }
+<<<<<<< HEAD
   | { type: "cart/add"; payload: Product }
   | { type: "cart/remove"; payload: string }
   | { type: "cart/update_quantity"; payload: { productId: string; quantity: number } }
@@ -83,6 +92,21 @@ const initialState: State = {
   reviews: savedState.reviews || seedReviews,
   addresses: savedState.addresses || seedAddresses,
   cart: savedState.cart || [],
+=======
+  | { type: "cart/add"; payload: Product } // Добавить товар в корзину
+  | { type: "cart/remove"; payload: string } // Удалить товар из корзины
+  | { type: "cart/update_quantity"; payload: { productId: string; quantity: number } } // Обновить количество
+  | { type: "cart/clear" }; // Очистить корзину
+
+// Обновите начальное состояние
+const initialState: State = {
+  products: seedProducts,
+  users: seedUsers,
+  orders: seedOrders,
+  reviews: seedReviews,
+  addresses: seedAddresses,
+  cart: [], // Пустая корзина по умолчанию
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
 };
 
 // Добавьте функции в контекст
@@ -198,6 +222,7 @@ function reducer(state: State, action: Action): State {
         ),
       };
 
+<<<<<<< HEAD
         // Cart actions
     case "cart/add": {
       const product = action.payload;
@@ -244,6 +269,56 @@ function reducer(state: State, action: Action): State {
 
     default:
       return state;
+=======
+        // Обработчики для корзины
+        case "cart/add": {
+          const product = action.payload;
+          const existingItem = state.cart.find(item => item.productId === product.id);
+          
+          if (existingItem) {
+            // Если товар уже есть в корзине, увеличиваем количество
+            return {
+              ...state,
+              cart: state.cart.map(item =>
+                item.productId === product.id
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              )
+            };
+          } else {
+            // Если товара нет в корзине, добавляем его
+            return {
+              ...state,
+              cart: [...state.cart, { productId: product.id, quantity: 1 }]
+            };
+          }
+        }
+    
+        case "cart/remove":
+          return {
+            ...state,
+            cart: state.cart.filter(item => item.productId !== action.payload)
+          };
+    
+        case "cart/update_quantity":
+          return {
+            ...state,
+            cart: state.cart.map(item =>
+              item.productId === action.payload.productId
+                ? { ...item, quantity: action.payload.quantity }
+                : item
+            ).filter(item => item.quantity > 0) // Удаляем если количество стало 0
+          };
+    
+        case "cart/clear":
+          return {
+            ...state,
+            cart: []
+          };
+    
+        default:
+          return state;
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   }
 }
 
@@ -305,11 +380,14 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+<<<<<<< HEAD
   // Сохраняем состояние в localStorage при каждом изменении
   useEffect(() => {
     saveStateToStorage(state);
   }, [state]);
 
+=======
+>>>>>>> c50f7566cd8b979c67bb43c2356529a4179cef19
   const value = useMemo(
     () => ({
       state,
